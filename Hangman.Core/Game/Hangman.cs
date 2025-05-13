@@ -1,12 +1,36 @@
 ﻿using System;
 using HangmanRenderer.Renderer;
 
+
 namespace Hangman.Core.Game
 {
     public class HangmanGame
     {
         private GallowsRenderer _renderer;
-
+        private Random rand;
+        private string[] words= {
+            "Easy",
+            "Xenophobia",
+            "onomatopoeia",
+            "Samsung",
+            "China",
+            "Insomnia",
+            "Infinite",
+            "Glutony",
+            "Identity",
+            "Neuroscience",
+            "Inconsistency",
+            "Phlebotomy",
+            "oesophogus",
+            "Supercalifragilisticexpialidocious",
+            "Mannequin",
+            "Singularity",
+            "Gaussian",
+            "Electromagnetic",
+            "Interpolation",
+            "Oogenesis",
+            "Ovulation"
+        };
         public HangmanGame()
         {
             _renderer = new GallowsRenderer();
