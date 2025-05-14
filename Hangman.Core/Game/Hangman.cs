@@ -7,8 +7,8 @@ namespace Hangman.Core.Game
     public class HangmanGame
     {
         private GallowsRenderer _renderer;
-        private Random rand;
-        private string none = "-";
+        private Random rand = new Random();
+        private const string none = "-";
         private string[] words= {
             "Easy",
             "Xenophobia",
@@ -41,10 +41,13 @@ namespace Hangman.Core.Game
         {
             _renderer.Render(5, 5, 6);
 
+            string guess = PickWord();
+            string blanks = GetSpaces(guess);
+
             Console.SetCursorPosition(0, 13);
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write("Your current guess: ");
-            Console.WriteLine("--------------");
+            Console.WriteLine(blanks);
             Console.SetCursorPosition(0, 15);
 
             Console.ForegroundColor = ConsoleColor.Green;
@@ -57,7 +60,22 @@ namespace Hangman.Core.Game
         {
             string tempWord = string.Empty;
             int num = rand.Next(20);
+            tempWord = words[num];
             return tempWord;
+        }
+
+        private string GetSpaces(string word)
+        {
+            string newStr = string.Empty;
+
+            int len = word.Length;
+
+            for (int i = 0; i < len; i++)
+            {
+                newStr += none;
+            }
+
+            return newStr;
         }
     }
 }
