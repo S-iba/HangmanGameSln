@@ -8,6 +8,7 @@ namespace Hangman.Core.Game
     {
         private GallowsRenderer _renderer;
         private Random rand;
+        private string none = "-";
         private string[] words= {
             "Easy",
             "Xenophobia",
@@ -52,5 +53,11 @@ namespace Hangman.Core.Game
             var nextGuess = Console.ReadLine();
         }
 
+        private string PickWord()
+        {
+            string tempWord = string.Empty;
+            int num = rand.Next(20);
+            return tempWord;
+        }
     }
 }
