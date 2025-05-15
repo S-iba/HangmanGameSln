@@ -1,5 +1,5 @@
-﻿using System;
-using HangmanRenderer.Renderer;
+﻿using HangmanRenderer.Renderer;
+using System;
 
 
 namespace Hangman.Core.Game
@@ -9,7 +9,8 @@ namespace Hangman.Core.Game
         private GallowsRenderer _renderer;
         private Random rand = new Random();
         private const string none = "-";
-        private string[] words= {
+        char[] arrGuess;
+        private string[] words = {
             "Easy",
             "Xenophobia",
             "onomatopoeia",
@@ -41,11 +42,15 @@ namespace Hangman.Core.Game
         {
             _renderer.Render(5, 5, 6);
 
-            string guess = PickWord();
-            string blanks = GetSpaces(guess);
+        }
+
+        private void Play()
+        {
+            string guess = PickWord(); //gets the word picked
+            string blanks = GetSpaces(guess);       //gets the required number of spaces needed for the word
 
             Console.SetCursorPosition(0, 13);
-            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Your current guess: ");
             Console.WriteLine(blanks);
             Console.SetCursorPosition(0, 15);
@@ -54,6 +59,18 @@ namespace Hangman.Core.Game
 
             Console.Write("What is your next guess: ");
             var nextGuess = Console.ReadLine();
+        }
+
+        private void Fill(ref string blanks, string guess,char nextGuess)
+        {
+            arrGuess = guess.ToCharArray();
+
+            for (int i = 0; i < blanks.Length; i++) {
+                if (arrGuess[i] == nextGuess)
+                {
+                    blanks[i]= nextGuess;
+                }
+                }
         }
 
         private string PickWord()
