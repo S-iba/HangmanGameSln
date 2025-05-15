@@ -81,13 +81,13 @@ namespace Hangman.Core.Game
         private void Fill(ref string blanks, string guess,char nextGuess)
         {
             arrGuess = guess.ToCharArray();
-            string tempStr = string.Empty;
+            string tempStr = blanks;
             for (int i = 0; i < blanks.Length; i++) {
                 if (arrGuess[i] == nextGuess)
                 {
                     tempStr += nextGuess;
                 }
-                else if ()
+                else
                 {
                     tempStr += none;
                 }
