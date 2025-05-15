@@ -45,7 +45,7 @@ namespace Hangman.Core.Game
             string blanks = GetSpaces(guess);
 
             Console.SetCursorPosition(0, 13);
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("Your current guess: ");
             Console.WriteLine(blanks);
             Console.SetCursorPosition(0, 15);
