@@ -90,6 +90,7 @@ namespace Hangman.Core.Game
                     tempStr += none;
                 } 
             }
+
             blanks = tempStr;
         }
 
