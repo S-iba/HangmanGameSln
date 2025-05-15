@@ -41,7 +41,7 @@ namespace Hangman.Core.Game
         public void Run()
         {
             _renderer.Render(5, 5, 6);
-
+            Play();
         }
 
         private void Play()
@@ -49,28 +49,48 @@ namespace Hangman.Core.Game
             string guess = PickWord(); //gets the word picked
             string blanks = GetSpaces(guess);       //gets the required number of spaces needed for the word
 
-            Console.SetCursorPosition(0, 13);
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("Your current guess: ");
-            Console.WriteLine(blanks);
-            Console.SetCursorPosition(0, 15);
+            while (RemainingBlanks(blanks) != 0)
+            {
+                Console.SetCursorPosition(0, 13);
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write("Your current guess: ");
+                Console.WriteLine(blanks);
+                Console.SetCursorPosition(0, 15);
 
-            Console.ForegroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Green;
 
-            Console.Write("What is your next guess: ");
-            var nextGuess = Console.ReadLine();
+                Console.Write("What is your next guess: ");
+                var nextGuess = char.Parse(Console.ReadLine());
+                Fill(ref blanks, guess, nextGuess);
+            }
+            Console.WriteLine("You have won!!!");
+        }
+
+        private int RemainingBlanks(string blanks)
+        {
+            char[] counter = blanks.ToCharArray();
+            int count = 0;
+            foreach (char c in counter)
+            {
+                if (c == '-')
+                    count++;
+            }
+            return count;
         }
 
         private void Fill(ref string blanks, string guess,char nextGuess)
         {
             arrGuess = guess.ToCharArray();
-
+            string tempStr = string.Empty;
             for (int i = 0; i < blanks.Length; i++) {
                 if (arrGuess[i] == nextGuess)
                 {
-                    blanks[i]= nextGuess;
-                }
-                }
+                    tempStr += nextGuess;
+                } else {
+                    tempStr += none;
+                } 
+            }
+            blanks = tempStr;
         }
 
         private string PickWord()
