@@ -86,9 +86,13 @@ namespace Hangman.Core.Game
                 if (arrGuess[i] == nextGuess)
                 {
                     tempStr += nextGuess;
-                } else {
+                }
+                else if ()
+                {
                     tempStr += none;
-                } 
+                }
+                    
+                
             }
 
             blanks = tempStr;
