@@ -10,28 +10,29 @@ namespace Hangman.Core.Game
         private Random rand = new Random();
         private const string none = "-";
         char[] arrGuess;
+        string tempStr = blanks;
         private string[] words = {
-            "Easy",
-            "Xenophobia",
-            "onomatopoeia",
-            "Samsung",
-            "China",
-            "Insomnia",
-            "Infinite",
-            "Glutony",
-            "Identity",
-            "Neuroscience",
-            "Inconsistency",
-            "Phlebotomy",
-            "oesophogus",
-            "Supercalifragilisticexpialidocious",
-            "Mannequin",
-            "Singularity",
-            "Gaussian",
-            "Electromagnetic",
-            "Interpolation",
-            "Oogenesis",
-            "Ovulation"
+            "EASY",
+            "XENOPHOBIA",
+            "ONOMATOPOEIA",
+            "SAMSUNG",
+            "CHINA",
+            "INSOMNIA",
+            "INFINITE",
+            "GLUTONNY",
+            "IDENTITY",
+            "NEUROSCIENCE",
+            "INCONSISTENCY",
+            "PHLEBOTOMY",
+            "OESOPHAGUS",
+            "SUPERCALIGRAGILISTICEXPIALIDOCOIUS",
+            "MANNEQUIN",
+            "SINGULARITY",
+            "GAUSSIAN",
+            "ELECTROMAGNETIC",
+            "INTERPOLATION",
+            "OOGENESIS",
+            "OVULATION"
         };
         public HangmanGame()
         {
@@ -47,6 +48,7 @@ namespace Hangman.Core.Game
         private void Play()
         {
             string guess = PickWord(); //gets the word picked
+            guess.ToUpper();
             string blanks = GetSpaces(guess);       //gets the required number of spaces needed for the word
 
             while (RemainingBlanks(blanks) != 0)
@@ -60,7 +62,7 @@ namespace Hangman.Core.Game
                 Console.ForegroundColor = ConsoleColor.Green;
 
                 Console.Write("What is your next guess: ");
-                var nextGuess = char.Parse(Console.ReadLine());
+                char nextGuess = char.Parse(Console.ReadLine());
                 Fill(ref blanks, guess, nextGuess);
             }
             Console.WriteLine("You have won!!!");
@@ -81,14 +83,12 @@ namespace Hangman.Core.Game
         private void Fill(ref string blanks, string guess,char nextGuess)
         {
             arrGuess = guess.ToCharArray();
-            string tempStr = string.Empty;
+            tempStr = blanks;
             for (int i = 0; i < blanks.Length; i++) {
                 if (arrGuess[i] == nextGuess)
                 {
-                    tempStr += nextGuess;
-                }
-                else
-                {
+                    tempStr = tempStr.Replace('-',nextGuess);
+                } else {
                     tempStr += none;
                 }
                     
