@@ -9,6 +9,7 @@ namespace Hangman.Core.Game
     {
         private GallowsRenderer _renderer;
         private Random rand = new Random();
+        int numGallows = 6;
         private const string none = "-";
         char[] arrGuess;
         char[] tempStr;
@@ -42,7 +43,7 @@ namespace Hangman.Core.Game
 
         public void Run()
         {
-            _renderer.Render(5, 5, 6);
+            _renderer.Render(5, 5, numGallows);
             Play();
         }
 
@@ -52,7 +53,7 @@ namespace Hangman.Core.Game
             guess.ToUpper();
             string blanks = GetSpaces(guess);       //gets the required number of spaces needed for the word
 
-            while (RemainingBlanks(blanks) != 0)
+            while (RemainingBlanks(blanks) != 0 || numGallows == 0)
             {
                 Console.SetCursorPosition(0, 13);
                 Console.ForegroundColor = ConsoleColor.Cyan;
@@ -62,10 +63,26 @@ namespace Hangman.Core.Game
 
                 Console.ForegroundColor = ConsoleColor.Green;
 
+                string oldBlanks = blanks;
+
                 Console.Write("What is your next guess: ");
                 char nextGuess = char.Parse(Console.ReadLine());
                 Fill(ref blanks, guess, nextGuess);
+
+                if (oldBlanks == blanks)
+                {
+                    numGallows--;
+                    _renderer.Render(5,5,numGallows);
+                }
+                    
             }
+            Console.SetCursorPosition(0, 13);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Your current guess: ");
+            Console.WriteLine(blanks);
+            Console.SetCursorPosition(0, 15);
+
+
             Console.WriteLine("You have won!!!");
         }
 
@@ -98,7 +115,7 @@ namespace Hangman.Core.Game
                 temp += c;
             }
             blanks = temp;
-            Console.WriteLine(blanks);
+            //Console.WriteLine(blanks);
         }
 
         private string PickWord()
