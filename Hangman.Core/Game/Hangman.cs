@@ -82,8 +82,17 @@ namespace Hangman.Core.Game
             Console.WriteLine(blanks);
             Console.SetCursorPosition(0, 15);
 
+            if (numGallows != 0)
+            {
+                Console.SetCursorPosition(0, 17);
+                Console.WriteLine("Congratulations, You have won!!!");
+            }
+            else {
+                Console.SetCursorPosition(0, 17);
+                Console.ForegroundColor= ConsoleColor.Red;
+                Console.WriteLine("Sorry, You L.O.S.T!!!");
+            }
 
-            Console.WriteLine("You have won!!!");
         }
 
         private int RemainingBlanks(string blanks)
