@@ -10,7 +10,7 @@ namespace Hangman.Core.Game
         private Random rand = new Random();
         private const string none = "-";
         char[] arrGuess;
-        string tempStr = blanks;
+        char[] tempStr;
         private string[] words = {
             "EASY",
             "XENOPHOBIA",
@@ -83,19 +83,19 @@ namespace Hangman.Core.Game
         private void Fill(ref string blanks, string guess,char nextGuess)
         {
             arrGuess = guess.ToCharArray();
-            tempStr = blanks;
+            tempStr = blanks.ToCharArray();
             for (int i = 0; i < blanks.Length; i++) {
                 if (arrGuess[i] == nextGuess)
                 {
-                    tempStr = tempStr.Replace('-',nextGuess);
-                } else {
-                    tempStr += none;
+                    tempStr[i] = nextGuess;
                 }
-                    
-                
             }
 
-            blanks = tempStr;
+            foreach (char c in tempStr)
+            {
+                blanks += c;
+            }
+            
         }
 
         private string PickWord()
