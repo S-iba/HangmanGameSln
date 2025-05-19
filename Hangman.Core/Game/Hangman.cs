@@ -46,10 +46,10 @@ namespace Hangman.Core.Game
             int choice = 0;
             while (choice != 99)
             {
-                Console.WriteLine("Play? Please Enter any number \nTo Exit! Please Enter 99");
-                choice = int.Parse(Console.ReadLine());
                 numGallows = 6;
                 Play();
+                Console.WriteLine("Play? Please Enter any number \nTo Exit! Please Enter 99");
+                choice = int.Parse(Console.ReadLine());
             }
         }
 
