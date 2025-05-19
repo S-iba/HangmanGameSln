@@ -53,7 +53,7 @@ namespace Hangman.Core.Game
             guess.ToUpper();
             string blanks = GetSpaces(guess);       //gets the required number of spaces needed for the word
 
-            while (RemainingBlanks(blanks) != 0 || numGallows == 0)
+            while (RemainingBlanks(blanks) != 0 && numGallows > 0)
             {
                 Console.SetCursorPosition(0, 13);
                 Console.ForegroundColor = ConsoleColor.Cyan;
