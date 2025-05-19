@@ -91,8 +91,10 @@ namespace Hangman.Core.Game
                 Console.SetCursorPosition(0, 17);
                 Console.ForegroundColor= ConsoleColor.Red;
                 Console.WriteLine("Sorry, You L.O.S.T!!!");
-            }
 
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"The word you were looking for is: {guess}");
+            }
         }
 
         private int RemainingBlanks(string blanks)
