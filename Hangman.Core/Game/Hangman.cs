@@ -43,12 +43,19 @@ namespace Hangman.Core.Game
 
         public void Run()
         {
-            _renderer.Render(5, 5, numGallows);
-            Play();
+            int choice = 0;
+            while (choice != 99)
+            {
+                Console.WriteLine("Play? Please Enter any number \n To Exit! Please Enter 99");
+                choice = int.Parse(Console.ReadLine());
+                _renderer.Render(5, 5, numGallows);
+                Play();
+            }
         }
 
         private void Play()
-        {
+        {   
+            Console.Clear();
             string guess = PickWord(); //gets the word picked
             guess.ToUpper();
             string blanks = GetSpaces(guess);       //gets the required number of spaces needed for the word
