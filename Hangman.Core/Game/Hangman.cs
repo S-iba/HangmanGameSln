@@ -1,5 +1,6 @@
 ﻿using HangmanRenderer.Renderer;
 using System;
+using System.Security;
 
 
 namespace Hangman.Core.Game
@@ -90,12 +91,14 @@ namespace Hangman.Core.Game
                     tempStr[i] = nextGuess;
                 }
             }
-
+            
+            string temp = string.Empty;
             foreach (char c in tempStr)
             {
-                blanks += c;
+                temp += c;
             }
-            
+            blanks = temp;
+            Console.WriteLine(blanks);
         }
 
         private string PickWord()
